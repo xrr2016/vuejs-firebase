@@ -1,9 +1,9 @@
 <template>
   <v-app>
     <!-- drawer -->
-    <v-navigation-drawer v-model="sideNav">
+    <v-navigation-drawer temporary v-model="sideNav">
       <v-list>
-        <v-list-tile v-for="item of menuItems" :key="item.title">
+        <v-list-tile v-for="item of menuItems" :key="item.title" :to="item.route">
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-tile-action>
@@ -13,14 +13,13 @@
     </v-navigation-drawer>
     <!-- toolbar -->
     <v-toolbar class="primary">
-      <v-toolbar-side-icon 
-        @click.native.stop="sideNav = !sideNav"
-        class="hidden-sm-and-up"
-      ></v-toolbar-side-icon>
-      <v-toolbar-title class="white--text">Share</v-toolbar-title>
+      <v-toolbar-side-icon @click.native.stop="sideNav = !sideNav" class="hidden-sm-and-up"></v-toolbar-side-icon>
+      <v-toolbar-title class="white--text">
+        <router-link to="/" tag="span" style="cursor: pointer;">Share</router-link>
+      </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
-        <v-btn class="white--text" flat v-for="item of menuItems" :key="item.title">
+        <v-btn class="white--text" flat v-for="item of menuItems" :key="item.title" :to="item.route">
           <v-icon class="white--text" left>{{ item.icon }}</v-icon>
           {{ item.title }}
         </v-btn>
@@ -38,11 +37,11 @@ export default {
     return {
       sideNav: false,
       menuItems: [
-        { icon: 'explore', title: 'Share' },
-        { icon: 'room', title: 'Share Something You Like' },
-        { icon: 'person', title: 'Profile' },
-        { icon: 'face', title: 'Sign up' },
-        { icon: 'lock_open', title: 'Sign in' }
+        { icon: 'explore', title: 'Shares', route: '/shares' },
+        { icon: 'room', title: 'Share Something You Like', route: '/create_share' },
+        { icon: 'person', title: 'Profile', route: '/profile' },
+        { icon: 'face', title: 'Sign up', route: '/signup' },
+        { icon: 'lock_open', title: 'Sign in', route: '/signin' }
       ]
     }
   }
