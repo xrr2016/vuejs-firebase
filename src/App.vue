@@ -3,11 +3,11 @@
     <!-- drawer -->
     <v-navigation-drawer v-model="sideNav">
       <v-list>
-        <v-list-tile>
+        <v-list-tile v-for="item of menuItems" :key="item.title">
           <v-list-tile-action>
-            <v-icon>explore</v-icon>
+            <v-icon>{{ item.icon }}</v-icon>
           </v-list-tile-action>
-          <v-list-tile-content>Share</v-list-tile-content>
+          <v-list-tile-content>{{ item.title }}</v-list-tile-content>
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
@@ -20,13 +20,15 @@
       <v-toolbar-title class="white--text">Share</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
-        <v-btn class="white--text" flat>
-          <v-icon left>explore</v-icon>
-          Share Something
+        <v-btn class="white--text" flat v-for="item of menuItems" :key="item.title">
+          <v-icon class="white--text" left>{{ item.icon }}</v-icon>
+          {{ item.title }}
         </v-btn>
       </v-toolbar-items>
     </v-toolbar>
-    <main></main>
+    <main>
+      <router-view></router-view>
+    </main>
   </v-app>
 </template>
 
@@ -34,7 +36,14 @@
 export default {
   data () {
     return {
-      sideNav: false
+      sideNav: false,
+      menuItems: [
+        { icon: 'explore', title: 'Share' },
+        { icon: 'room', title: 'Share Something You Like' },
+        { icon: 'person', title: 'Profile' },
+        { icon: 'face', title: 'Sign up' },
+        { icon: 'lock_open', title: 'Sign in' }
+      ]
     }
   }
 }
