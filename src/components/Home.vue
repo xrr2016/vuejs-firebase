@@ -11,7 +11,13 @@
     <v-layout row wrap class="mt-2">
       <v-flex xs12>
         <v-carousel>
-          <v-carousel-item v-for="share in shares" :src="share.imgUrl" :key="share.id">
+          <v-carousel-item 
+            v-for="share in shares" 
+            :src="share.imgUrl" 
+            :key="share.id"
+            @click="onLoadShare(share.id)"
+            style="cursor: pointer;"
+            >
             <div class="title">{{ share.title }}</div>
           </v-carousel-item>
         </v-carousel>
@@ -33,6 +39,11 @@ export default {
         { imgUrl: 'http://img.tuku.com/upload/picture/2015/01/5nHwAbI.jpg', id: '366cb5e6-9842-4d51-9105-ad9049c7050a', title: 'platforms Sleek blue' },
         { imgUrl: 'http://img.tuku.com/upload/picture/2015/01/70uy62Y.jpg', id: 'febcada1-bf4b-44f6-92dc-225e705980a1', title: 'Croatian Kuna' }
       ]
+    }
+  },
+  methods: {
+    onLoadShare (id) {
+      this.$router.push(`/share/${id}`)
     }
   }
 }

@@ -13,7 +13,7 @@
     </v-navigation-drawer>
     <!-- toolbar -->
     <v-toolbar class="primary">
-      <v-toolbar-side-icon @click.native.stop="sideNav = !sideNav" class="hidden-sm-and-up"></v-toolbar-side-icon>
+      <v-toolbar-side-icon @click.stop="sideNav = !sideNav" class="hidden-sm-and-up"></v-toolbar-side-icon>
       <v-toolbar-title class="white--text">
         <router-link to="/" tag="span" style="cursor: pointer;">Share</router-link>
       </v-toolbar-title>
