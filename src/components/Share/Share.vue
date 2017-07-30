@@ -4,13 +4,13 @@
       <v-flex xs12>
         <v-card>
           <v-card-title>
-            <h5 class="primary--text">cyan Manat</h5>
+            <h5 class="primary--text">{{ share.title }}</h5>
           </v-card-title>
-          <v-card-media src="http://www.tianya999.com/uploads/allimg/130604/2290-130604153453.jpg" height="420px">
+          <v-card-media :src="share.imgUrl" height="420px">
           </v-card-media>
           <v-card-text>
-            <div class="info--text">encoding Credit Card Account</div>
-            <div>Usability Books Creative</div>
+             <!-- <div class="info--text">{{ share.}}</div>  -->
+            <div>{{ share.date }}</div>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -21,3 +21,14 @@
     </v-layout>
   </v-container>
 </template>
+
+<script>
+export default {
+  props: ['id'],
+  computed: {
+    share () {
+      return this.$store.getters.loadedShare(this.id)
+    }
+  }
+}
+</script>

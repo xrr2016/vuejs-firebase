@@ -26,6 +26,7 @@ export default new Router({
     {
       path: '/share/:id',
       name: 'Share',
+      props: true,
       component: Share
     },
     {

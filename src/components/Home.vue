@@ -32,13 +32,11 @@
 <script>
 export default {
   data () {
-    return {
-      shares: [
-        { imgUrl: 'http://www.tianya999.com/uploads/allimg/130604/2290-130604153503.jpg', id: '5655081d-3ca5-4bd5-8cda-f0f787597b56', title: 'data-warehouse' },
-        { imgUrl: 'http://www.tianya999.com/uploads/allimg/130604/2290-130604153453.jpg', id: '25dc2138-8adf-4ebd-adb1-cde63cb463c1', title: 'Implementation' },
-        { imgUrl: 'http://img.tuku.com/upload/picture/2015/01/5nHwAbI.jpg', id: '366cb5e6-9842-4d51-9105-ad9049c7050a', title: 'platforms Sleek blue' },
-        { imgUrl: 'http://img.tuku.com/upload/picture/2015/01/70uy62Y.jpg', id: 'febcada1-bf4b-44f6-92dc-225e705980a1', title: 'Croatian Kuna' }
-      ]
+    return {}
+  },
+  computed: {
+    shares () {
+      return this.$store.getters.featureShares
     }
   },
   methods: {
