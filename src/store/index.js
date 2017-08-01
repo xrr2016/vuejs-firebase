@@ -47,8 +47,6 @@ export const store = new Vuex.Store({
       ]
     }
   },
-  actions: {},
-  mutations: {},
   getters: {
     loadedShares(state) {
       return state.loadedShares.sort((prev, cur) => {
@@ -64,6 +62,24 @@ export const store = new Vuex.Store({
           return share.id === shareId
         })
       }
+    }
+  },
+  mutations: {
+    createShare (state, payload) {
+      state.loadedShares.push(payload)
+    }
+  },
+  actions: {
+    createShare ({ commit }, payload ) {
+      const share = {
+        title: payload.title,
+        desc: payload.desc,
+        imgUrl: payload.imgUrl,
+        date: payload.date,
+        id: 'e02f7bdb-555f-4029-a013-9a3a4efc67d0'
+      }
+      // firebase
+      commit('createShare', share)
     }
   }
 })
