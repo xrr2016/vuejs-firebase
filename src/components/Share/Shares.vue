@@ -12,7 +12,7 @@
                 <v-card-title primary-title>
                   <div>
                     <h4 class="headline white--text mb-0">{{ share.title }}</h4>
-                    <span>{{ share.date }}</span>
+                    <span>{{ share.date | date }}</span>
                   </div>
                 </v-card-title>
                 <v-card-actions>

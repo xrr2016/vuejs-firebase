@@ -15,7 +15,7 @@
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 xl4 offset-sm3 offset-xl4>
-              <v-text-field name="desc" label="Description" id="desc" v-model="desc" multi-line rows=3 required></v-text-field>
+              <v-text-field name="desc" label="Description" id="desc" v-model="desc" multi-line rows="2" required></v-text-field>
             </v-flex>
           </v-layout>
           <v-layout row>
@@ -25,7 +25,7 @@
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 xl4 offset-sm3 offset-xl4>
-              <img :src="imgUrl" height="120">
+              <img :src="imgUrl" height="120" v-if="imgUrl">
             </v-flex>
           </v-layout>
           <v-layout row>
@@ -66,7 +66,7 @@ export default {
         title: this.title,
         desc: this.desc,
         imgUrl: this.imgUrl,
-        date: new Date()
+        date: new Date().toLocaleString()
       }
       this.$store.dispatch('createShare', share)
       this.$router.push('/shares')

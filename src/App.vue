@@ -41,7 +41,7 @@ export default {
         { icon: 'room', title: 'Share Something You Like', route: '/create_share' },
         { icon: 'person', title: 'Profile', route: '/profile' },
         { icon: 'face', title: 'Sign up', route: '/signup' },
-        { icon: 'lock_open', title: 'Sign in', route: '/signin' }
+        { icon: 'lock_open', title: 'Login', route: '/signin' }
       ]
     }
   }

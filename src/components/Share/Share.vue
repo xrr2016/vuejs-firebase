@@ -6,7 +6,7 @@
           <v-card-title>
             <h5 class="primary--text">{{ share.title }}</h5>
           </v-card-title>
-          <v-card-media :src="share.imgUrl" height="420px">
+          <v-card-media :src="share.imgUrl" height="320px">
           </v-card-media>
           <v-card-text>
             <div class="info--text">{{ share.date }}</div>
