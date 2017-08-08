@@ -25,10 +25,8 @@
                     </v-text-field>
                   </v-flex>
                 </v-layout>
-                <v-layout row>
-                  <v-flex xs12>
-                    <v-btn type="submit" @click="handleSubmit($event)">注册</v-btn>
-                  </v-flex>
+                <v-layout row style="justify-content: flex-end;">
+                  <v-btn type="submit" primary @click="handleSubmit($event)">注册</v-btn>
                 </v-layout>
               </form>
             </v-container>
@@ -50,7 +48,7 @@ export default {
   },
   computed: {
     comparePassword () {
-      return this.password === this.confirmPassword ? '' : '密码不相等。'
+      return this.password === this.confirmPassword ? true : '密码不相等。'
     }
   },
   methods: {
