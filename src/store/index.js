@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import * as firebase from 'firebase'
 
 Vue.use(Vuex)
 
@@ -71,6 +72,9 @@ export const store = new Vuex.Store({
   mutations: {
     createShare (state, payload) {
       state.loadedShares.push(payload)
+    },
+    setUser(state, payload) {
+      state.user = payload
     }
   },
   actions: {
@@ -84,6 +88,15 @@ export const store = new Vuex.Store({
       }
       // firebase
       commit('createShare', share)
+    },
+    signUserUp ({ commit }, payload) {
+      firebase.auth()
+        .createUserWithEmailAndPassword(payload.email, payload.password)
+        .then(user => {
+            const newUser = { id: user.uid, shares: [] }
+            commit('setUser', newUser)
+          })
+        .catch(err => console.log(err))
     }
   }
 })

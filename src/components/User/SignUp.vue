@@ -5,7 +5,7 @@
         <v-card>
           <v-card-text>
             <v-container>
-              <form>
+              <form @submit.prevent>
                 <v-layout row>
                   <v-flex xs12>
                     <v-text-field name="email" label="mail" id="email" v-model="email"
@@ -26,7 +26,7 @@
                   </v-flex>
                 </v-layout>
                 <v-layout row style="justify-content: flex-end;">
-                  <v-btn type="submit" primary @click="handleSubmit($event)">注册</v-btn>
+                  <v-btn type="submit" primary @click="handleSubmit">注册</v-btn>
                 </v-layout>
               </form>
             </v-container>
@@ -53,11 +53,9 @@ export default {
   },
   methods: {
     handleSubmit (event) {
-      event.preventDefault()
-      console.log({
+      this.$store.dispatch('signUserUp', {
         email: this.email,
-        password: this.password,
-        confirm: this.confirmPassword
+        password: this.password
       })
     }
   }

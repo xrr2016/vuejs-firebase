@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
-import * as firebase from 'firebase'
+import { initializeApp } from 'firebase'
 import App from './App'
 import router from './router'
 import {
@@ -20,7 +20,7 @@ new Vue({
   store,
   render: h => h(App),
   created () {
-    firebase.initializeApp({
+    initializeApp({
       apiKey: 'AIzaSyCOo6SINl-cltqm1fFif8KPGU4aYAdcb8I',
       authDomain: 'share-f0f61.firebaseapp.com',
       databaseURL: 'https://share-f0f61.firebaseio.com',
