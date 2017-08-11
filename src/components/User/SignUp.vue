@@ -49,6 +49,16 @@ export default {
   computed: {
     comparePassword () {
       return this.password === this.confirmPassword ? true : '密码不相等。'
+    },
+    user () {
+      return this.$store.getters.user
+    }
+  },
+  watch: {
+    user (value) {
+      if (value) {
+        this.$router.push('/')
+      }
     }
   },
   methods: {

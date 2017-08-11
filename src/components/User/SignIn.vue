@@ -1,15 +1,67 @@
 <template>
-  <div>
-    <p>The SignIn page</p>
-  </div>
+  <v-container>
+    <v-layout row>
+      <v-flex xs12 sm6 offset-sm3>
+        <v-card>
+          <v-card-text>
+            <v-container>
+              <form @submit.prevent>
+                <v-layout row>
+                  <v-flex xs12>
+                    <v-text-field name="email" label="mail" id="email" v-model="email"
+                      type="email" required></v-text-field>
+                  </v-flex>
+                </v-layout>
+                <v-layout row>
+                  <v-flex xs12>
+                    <v-text-field name="password" label="password" id="password" v-model="password"
+                      type="password" required></v-text-field>
+                  </v-flex>
+                </v-layout>
+                <v-layout row style="justify-content: flex-end;">
+                  <v-btn type="submit" primary @click="handleLogin">登录</v-btn>
+                </v-layout>
+              </form>
+            </v-container>
+          </v-card-text>
+        </v-card>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
 export default {
+  data () {
+    return {
+      email: '',
+      password: '',
+      confirmPassword: ''
+    }
+  },
+  computed: {
+    user () {
+      return this.$store.getters.user
+    }
+  },
+  watch: {
+    user (value) {
+      if (value) {
+        this.$router.push('/')
+      }
+    }
+  },
+  methods: {
+    handleLogin (event) {
+      this.$store.dispatch('userLogin', {
+        email: this.email,
+        password: this.password
+      })
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 
 </style>
-

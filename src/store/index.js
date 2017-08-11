@@ -35,22 +35,7 @@ export const store = new Vuex.Store({
         desc: 'Personal Loan Accountsy stem digital Agent virtual'
       }
     ],
-    user: {
-      id: 'c4a04818-6589-4cee-a36a-53930763ede5',
-      shares: [{
-          imgUrl: 'http://www.tianya999.com/uploads/allimg/130604/2290-130604153453.jpg',
-          id: '25dc2138-8adf-4ebd-adb1-cde63cb463c1',
-          title: 'Implementation',
-          date: '2017-07-28'
-        },
-        {
-          imgUrl: 'http://img.tuku.com/upload/picture/2015/01/5nHwAbI.jpg',
-          id: '366cb5e6-9842-4d51-9105-ad9049c7050a',
-          title: 'platforms Sleek blue',
-          date: '2017-07-26'
-        }
-      ]
-    }
+    user: null
   },
   getters: {
     loadedShares(state) {
@@ -67,6 +52,9 @@ export const store = new Vuex.Store({
           return share.id === shareId
         })
       }
+    },
+    user (state) {
+      return state.user
     }
   },
   mutations: {
@@ -89,14 +77,25 @@ export const store = new Vuex.Store({
       // firebase
       commit('createShare', share)
     },
+    // 用户注册
     signUserUp ({ commit }, payload) {
       firebase.auth()
         .createUserWithEmailAndPassword(payload.email, payload.password)
         .then(user => {
             const newUser = { id: user.uid, shares: [] }
             commit('setUser', newUser)
-          })
+        })
         .catch(err => console.log(err))
-    }
+    },
+    // 用户登录
+    userLogin ({ commit }, payload) {
+      firebase.auth()
+        .signInWithEmailAndPassword(payload.email, payload.password)
+        .then(user => {
+            const newUser = { id: user.uid, shares: [] }
+            commit('setUser', newUser)
+        })
+        .catch(err => console.log(err))
+    }  
   }
 })

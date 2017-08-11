@@ -35,14 +35,26 @@
 export default {
   data () {
     return {
-      sideNav: false,
-      menuItems: [
-        { icon: 'explore', title: 'Shares', route: '/shares' },
-        { icon: 'room', title: 'Share Something You Like', route: '/create_share' },
-        { icon: 'person', title: 'Profile', route: '/profile' },
+      sideNav: false
+    }
+  },
+  computed: {
+    menuItems () {
+      let menu = [
         { icon: 'face', title: 'Sign up', route: '/signup' },
         { icon: 'lock_open', title: 'Login', route: '/signin' }
       ]
+      if (this.userIsAuthenticated) {
+        menu = [
+          { icon: 'person', title: 'Profile', route: '/profile' },
+          { icon: 'room', title: 'Share Something You Like', route: '/create_share' },
+          { icon: 'explore', title: 'Shares', route: '/shares' }
+        ]
+      }
+      return menu
+    },
+    userIsAuthenticated () {
+      return !!this.$store.getters.user
     }
   }
 }
