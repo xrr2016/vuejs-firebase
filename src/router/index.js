@@ -5,8 +5,8 @@ import Shares from '@/components/Share/Shares.vue'
 import Share from '@/components/Share/Share.vue'
 import CreateShare from '@/components/Share/CreateShare.vue'
 import Profile from '@/components/User/Profile.vue'
-import SignIn from '@/components/User/SignIn.vue'
 import SignUp from '@/components/User/SignUp.vue'
+import Login from '@/components/User/Login.vue'
 
 Vue.use(Router)
 
@@ -45,9 +45,9 @@ export default new Router({
       component: SignUp
     },
     {
-      path: '/signin',
-      name: 'SignIn',
-      component: SignIn
+      path: '/login',
+      name: 'Login',
+      component: Login
     },
     {
       path: '*',

@@ -42,7 +42,7 @@ export default {
     menuItems () {
       let menu = [
         { icon: 'face', title: 'Sign up', route: '/signup' },
-        { icon: 'lock_open', title: 'Login', route: '/signin' }
+        { icon: 'lock_open', title: 'Login', route: '/login' }
       ]
       if (this.userIsAuthenticated) {
         menu = [

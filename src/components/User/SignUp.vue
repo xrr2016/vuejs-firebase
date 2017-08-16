@@ -1,8 +1,8 @@
 <template>
   <v-container>
-    <v-layout row>
+    <v-layout row v-if="error">
       <v-flex xs12 sm8 offset-sm2>
-        <app-alert @dismissed="onDismissed"></app-alert>
+        <app-alert @dismissed="onDismissed" :msg="error.message"></app-alert>
       </v-flex>
     </v-layout>
     <v-layout row>
@@ -31,7 +31,10 @@
                   </v-flex>
                 </v-layout>
                 <v-layout row style="justify-content: flex-end;">
-                  <v-btn type="submit" primary @click="handleSubmit">注册</v-btn>
+                  <v-btn type="submit" @click.native="handleSubmit" :loading="loading" 
+                    :disabled="loading" primary>
+                    注册<span slot="loader" class="custom-loader"><v-icon light>cached</v-icon></span>
+                  </v-btn>
                 </v-layout>
               </form>
             </v-container>
@@ -57,6 +60,12 @@ export default {
     },
     user () {
       return this.$store.getters.user
+    },
+    error () {
+      return this.$store.getters.error
+    },
+    loading () {
+      return this.$store.getters.loading
     }
   },
   watch: {
@@ -74,13 +83,12 @@ export default {
       })
     },
     onDismissed () {
-      console.log('dismissed alert')
+      this.$store.dispatch('clearError')
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
 </style>
 

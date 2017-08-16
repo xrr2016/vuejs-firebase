@@ -2,10 +2,10 @@
   <v-container>
     <v-layout row wrap class="mt-2">
       <v-flex xs12 sm6 class="text-xs-center text-sm-right">
-        <v-btn large to="/shares" class="accent white--text">Explore Shares</v-btn>
+        <v-btn block  to="/shares" class="accent white--text">Explore Shares</v-btn>
       </v-flex>
       <v-flex xs12 sm6 class="text-xs-center text-sm-left">
-        <v-btn large to="/create_share" class="info">Create New Share</v-btn>
+        <v-btn block  to="/create_share" class="info">Create New Share</v-btn>
       </v-flex>
     </v-layout>
     <v-layout row wrap class="mt-2">
