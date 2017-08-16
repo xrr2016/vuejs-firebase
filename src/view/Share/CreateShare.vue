@@ -45,6 +45,13 @@
 
 <script>
 export default {
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      if (!vm.$store.getters.user) {
+        console.log('未登录')
+      }
+    })
+  },
   data () {
     return {
       title: '',

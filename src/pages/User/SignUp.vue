@@ -1,12 +1,12 @@
 <template>
   <v-container>
     <v-layout row v-if="error">
-      <v-flex xs12 sm8 offset-sm2>
+      <v-flex xs12 sm6 offset-sm3>
         <app-alert @dismissed="onDismissed" :msg="error.message"></app-alert>
       </v-flex>
     </v-layout>
     <v-layout row>
-      <v-flex xs12 sm8 offset-sm2>
+      <v-flex xs12 sm6 offset-sm3>
         <v-card>
           <v-card-text>
             <v-container>
