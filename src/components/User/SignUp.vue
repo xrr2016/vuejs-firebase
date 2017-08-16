@@ -1,7 +1,12 @@
 <template>
   <v-container>
     <v-layout row>
-      <v-flex xs12 sm6 offset-sm3>
+      <v-flex xs12 sm8 offset-sm2>
+        <app-alert @dismissed="onDismissed"></app-alert>
+      </v-flex>
+    </v-layout>
+    <v-layout row>
+      <v-flex xs12 sm8 offset-sm2>
         <v-card>
           <v-card-text>
             <v-container>
@@ -67,6 +72,9 @@ export default {
         email: this.email,
         password: this.password
       })
+    },
+    onDismissed () {
+      console.log('dismissed alert')
     }
   }
 }

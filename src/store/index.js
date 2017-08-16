@@ -35,7 +35,9 @@ export const store = new Vuex.Store({
         desc: 'Personal Loan Accountsy stem digital Agent virtual'
       }
     ],
-    user: null
+    user: null,
+    loading: false,
+    error: null
   },
   getters: {
     loadedShares(state) {
@@ -61,8 +63,17 @@ export const store = new Vuex.Store({
     createShare (state, payload) {
       state.loadedShares.push(payload)
     },
-    setUser(state, payload) {
+    setUser (state, payload) {
       state.user = payload
+    },
+    setLoading (state, payload) {
+      state.loading = payload
+    },
+    setError (state, payload) {
+      state.error = payload
+    },
+    clearError (state) {
+      state.error = null
     }
   },
   actions: {
@@ -79,23 +90,35 @@ export const store = new Vuex.Store({
     },
     // 用户注册
     signUserUp ({ commit }, payload) {
+      commit('setLoading', true)
       firebase.auth()
         .createUserWithEmailAndPassword(payload.email, payload.password)
         .then(user => {
+            commit('setLoading', false)
             const newUser = { id: user.uid, shares: [] }
             commit('setUser', newUser)
         })
-        .catch(err => console.log(err))
+        .catch(err => { 
+          commit('setLoading', false)
+          commit('setError', err)
+          console.log(err) 
+        })
     },
     // 用户登录
     userLogin ({ commit }, payload) {
+      commit('setLoading', true)
       firebase.auth()
         .signInWithEmailAndPassword(payload.email, payload.password)
         .then(user => {
+            commit('setLoading', false)
             const newUser = { id: user.uid, shares: [] }
             commit('setUser', newUser)
         })
-        .catch(err => console.log(err))
+        .catch(err => { 
+          commit('setLoading', false)
+          commit('setError', err)
+          console.log(err)
+        })
     }  
   }
 })

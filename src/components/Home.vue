@@ -10,7 +10,7 @@
     </v-layout>
     <v-layout row wrap class="mt-2">
       <v-flex xs12>
-        <v-carousel>
+        <v-carousel style="height: 400px;">
           <v-carousel-item 
             v-for="share in shares" 
             :src="share.imgUrl" 

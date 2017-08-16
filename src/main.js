@@ -7,12 +7,13 @@ import {
   store
 } from './store'
 import dateFilter from './filters/date'
+import AlertComponent from './components/Alert'
 
 Vue.use(Vuetify)
 Vue.config.productionTip = false
 
 Vue.filter('date', dateFilter)
-
+Vue.component('app-alert', AlertComponent)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

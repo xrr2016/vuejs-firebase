@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app style="height: 100vh;">
     <!-- drawer -->
     <v-navigation-drawer temporary v-model="sideNav">
       <v-list>
