@@ -28,5 +28,6 @@ new Vue({
       projectId: 'share-f0f61',
       storageBucket: 'share-f0f61.appspot.com'
     })
+    this.$store.dispatch('loadShares')
   }
 })
