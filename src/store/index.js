@@ -70,7 +70,8 @@ export const store = new Vuex.Store({
               title: obj[key].title,
               desc: obj[key].desc,
               imgUrl: obj[key].imgUrl,
-              date: obj[key].date
+              date: obj[key].date,
+              creatorId: obj[key].creatorId
             })
           }
           commit('setLoadedShares', shares)
@@ -82,12 +83,13 @@ export const store = new Vuex.Store({
         })
     },
     // 创建一个
-    createShare ({ commit }, payload ) {
+    createShare ({ commit, state }, payload ) {
       const share = {
         title: payload.title,
         desc: payload.desc,
         imgUrl: payload.imgUrl,
-        date: payload.date
+        date: payload.date,
+        creatorId: state.user.id
       }
       // firebase
       firebase.database().ref('shares').push(share)
