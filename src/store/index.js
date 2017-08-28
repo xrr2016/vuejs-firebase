@@ -88,11 +88,17 @@ export const store = new Vuex.Store({
         title: payload.title,
         desc: payload.desc,
         imgUrl: payload.imgUrl,
-        date: payload.date,
-        id: 'e02f7bdb-555f-4029-a013-9a3a4efc67d0'
+        date: payload.date
       }
       // firebase
-      commit('createShare', share)
+      firebase.database().ref('shares').push(share)
+        .then(data => {
+          console.log(data)
+          commit('createShare', share)
+        })
+        .catch(err => {
+          console.log(err)
+        })
     },
     // 用户注册
     signUserUp ({ commit }, payload) {

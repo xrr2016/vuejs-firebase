@@ -49,6 +49,7 @@ export default {
     next(vm => {
       if (!vm.$store.getters.user) {
         console.log('未登录')
+        vm.$router.push('/login')
       }
     })
   },
