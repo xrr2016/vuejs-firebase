@@ -1,11 +1,9 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
-import { initializeApp } from 'firebase'
+import * as firebase from 'firebase'
 import App from './App'
 import router from './router'
-import {
-  store
-} from './store'
+import { store } from './store'
 import dateFilter from './filters/date'
 import AlertComponent from './components/Alert'
 
@@ -21,12 +19,17 @@ new Vue({
   store,
   render: h => h(App),
   created () {
-    initializeApp({
+    firebase.initializeApp({
       apiKey: 'AIzaSyCOo6SINl-cltqm1fFif8KPGU4aYAdcb8I',
       authDomain: 'share-f0f61.firebaseapp.com',
       databaseURL: 'https://share-f0f61.firebaseio.com',
       projectId: 'share-f0f61',
       storageBucket: 'share-f0f61.appspot.com'
+    })
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.$store.dispatch('autoLogin', user)
+      }
     })
     this.$store.dispatch('loadShares')
   }

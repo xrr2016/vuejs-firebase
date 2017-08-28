@@ -3,7 +3,6 @@ import Vuex from 'vuex'
 import * as firebase from 'firebase'
 
 Vue.use(Vuex)
-
 export const store = new Vuex.Store({
   state: {
     loadedShares: [],
@@ -131,6 +130,18 @@ export const store = new Vuex.Store({
           commit('setError', err)
           console.log(err)
         })
+    },
+    // 用户自动登录
+    autoLogin ({ commit }, payload) {
+      commit('setUser', { 
+        id: payload.uid,
+        createdShares: []
+       })
+    },
+    // 用户退出登录
+    userLogout ({ commit }) {
+      firebase.auth().signOut()
+      commit('setUser', null)
     },
     // 清空错误
     clearError ({ commit }) {

@@ -15,7 +15,7 @@
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 xl4 offset-sm3 offset-xl4>
-              <v-text-field name="desc" label="Description" id="desc" v-model="desc" multi-line rows="2" required></v-text-field>
+              <v-text-field name="desc" label="Description" id="desc" v-model="desc" multi-line rows="1" required></v-text-field>
             </v-flex>
           </v-layout>
           <v-layout row>

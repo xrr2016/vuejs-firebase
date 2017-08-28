@@ -8,6 +8,8 @@ import Profile from '@/pages/User/Profile.vue'
 import SignUp from '@/pages/User/SignUp.vue'
 import Login from '@/pages/User/Login.vue'
 
+import authGuard from '../router/authGuard'
+
 Vue.use(Router)
 
 export default new Router({
@@ -32,12 +34,14 @@ export default new Router({
     {
       path: '/create_share',
       name: 'CreateShare',
-      component: CreateShare
+      component: CreateShare,
+      beforeEnter: authGuard
     },
     {
       path: '/profile',
       name: 'Profile',
-      component: Profile
+      component: Profile,
+      beforeEnter: authGuard
     },
     {
       path: '/signup',

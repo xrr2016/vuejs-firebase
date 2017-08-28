@@ -9,6 +9,12 @@
           </v-list-tile-action>
           <v-list-tile-content>{{ item.title }}</v-list-tile-content>
         </v-list-tile>
+        <v-list-tile class="white-text" v-if="userIsAuthenticated" @click="logout">
+          <v-list-tile-action>
+            <v-icon left>exit_to_app</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>Logout</v-list-tile-content>
+        </v-list-tile>
       </v-list>
     </v-navigation-drawer>
     <!-- toolbar -->
@@ -23,6 +29,9 @@
           <v-icon class="white--text" left>{{ item.icon }}</v-icon>
           {{ item.title }}
         </v-btn>
+        <v-btn class="white--text" flat v-if="userIsAuthenticated" @click="logout">
+          <v-icon  class="white--text" left>exit_to_app</v-icon>Logout
+        </v-btn>
       </v-toolbar-items>
     </v-toolbar>
     <main>
@@ -36,6 +45,11 @@ export default {
   data () {
     return {
       sideNav: false
+    }
+  },
+  methods: {
+    logout () {
+      this.$store.dispatch('userLogout')
     }
   },
   computed: {
