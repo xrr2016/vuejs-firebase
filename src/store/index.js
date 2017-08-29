@@ -107,7 +107,7 @@ export const store = new Vuex.Store({
         })
         .then (file => {
           console.log(file)
-          imgUrl = file.metaData.downloadURLs[0]
+          imgUrl = file.downloadURL
           return firebase.database().ref('shares').child(key).update({
             imgUrl: imgUrl
           })
