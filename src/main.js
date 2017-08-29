@@ -20,11 +20,11 @@ new Vue({
   render: h => h(App),
   created () {
     firebase.initializeApp({
+      projectId: 'share-f0f61',
       apiKey: 'AIzaSyCOo6SINl-cltqm1fFif8KPGU4aYAdcb8I',
       authDomain: 'share-f0f61.firebaseapp.com',
       databaseURL: 'https://share-f0f61.firebaseio.com',
-      projectId: 'share-f0f61',
-      storageBucket: 'share-f0f61.appspot.com'
+      storageBucket: 'gs://share-f0f61.appspot.com/'
     })
     firebase.auth().onAuthStateChanged(user => {
       if (user) {

@@ -20,7 +20,10 @@
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 xl4 offset-sm3 offset-xl4>
-              <v-text-field name="imgUrl" label="Image Url" id="img-url" v-model="imgUrl" required></v-text-field>
+              <!-- <v-text-field name="imgUrl" label="Image Url" id="img-url" v-model="imgUrl" required></v-text-field> -->
+              <v-btn raised primary @click="handlePickFile">上传图片</v-btn>
+              <input type="file" ref="fileInput" style="display: none;" 
+                accept="image/*" @change="handleFileChange"> 
             </v-flex>
           </v-layout>
           <v-layout row>
@@ -57,7 +60,8 @@ export default {
     return {
       title: '',
       desc: '',
-      imgUrl: ''
+      imgUrl: '',
+      image: null
     }
   },
   computed: {
@@ -70,15 +74,37 @@ export default {
       if (!this.formIsValid) {
         return false
       }
+      if (!this.image) {
+        return
+      }
       const share = {
         title: this.title,
         desc: this.desc,
-        imgUrl: this.imgUrl,
+        // imgUrl: this.imgUrl,
+        image: this.image,
         date: new Date().toLocaleString()
       }
       this.$store.dispatch('createShare', share)
       this.$router.push('/shares')
+    },
+    // 选择图片
+    handlePickFile () {
+      this.$refs.fileInput.click()
+    },
+    handleFileChange (event) {
+      const files = event.target.files
+      let filename = files[0].name
+      if (filename.lastIndexOf('.') <= 0) {
+        return alert('Please add a valid file！')
+      }
+      const fileReader = new FileReader()
+      fileReader.addEventListener('load', () => {
+        this.imgUrl = fileReader.result
+      })
+      fileReader.readAsDataURL(files[0])
+      this.image = files[0]
     }
+    // 上传图片
   }
 }
 </script>
