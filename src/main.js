@@ -6,12 +6,14 @@ import router from './router'
 import { store } from './store'
 import dateFilter from './filters/date'
 import AlertComponent from './components/Alert'
+import DialogComponent from './components/EditDialog'
 
 Vue.use(Vuetify)
 Vue.config.productionTip = false
 
 Vue.filter('date', dateFilter)
 Vue.component('app-alert', AlertComponent)
+Vue.component('app-dialog', DialogComponent)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

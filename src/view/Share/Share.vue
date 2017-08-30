@@ -4,7 +4,11 @@
       <v-flex xs12>
         <v-card>
           <v-card-title>
-            <h5 class="primary--text">{{ share.title }}</h5>
+            <h6 class="primary--text">{{ share.title }}</h6>
+            <template v-if="userIsCreator">
+              <v-spacer></v-spacer>
+              <app-dialog></app-dialog>
+            </template>
           </v-card-title>
           <v-card-media :src="share.imgUrl" height="320px">
           </v-card-media>
@@ -37,6 +41,15 @@ export default {
   computed: {
     share () {
       return this.$store.getters.loadedShare(this.id)
+    },
+    userIsAuth () {
+      return !!this.$store.getters.user
+    },
+    userIsCreator () {
+      if (!this.userIsAuth) {
+        return false
+      }
+      return this.$store.getters.user.id === this.share.creatorId
     }
   },
   methods: {
