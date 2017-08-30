@@ -43,6 +43,18 @@ export const store = new Vuex.Store({
     createShare (state, payload) {
       state.loadedShares.push(payload)
     },
+    updateShare (state, payload) {
+      const share = state.loadedShares.find(share => share.id === payload.id)
+      if (payload.title) {
+        share.title = payload.title
+      }
+      if (payload.desc) {
+        share.desc = payload.desc
+      }
+      if (payload.date) {
+        share.date = payload.date
+      }
+    },
     setUser (state, payload) {
       state.user = payload
     },
@@ -121,6 +133,29 @@ export const store = new Vuex.Store({
         })
         .catch(err => {
           console.log(err)
+        })
+    },
+    // 更新数据
+    updateShare ({ commit, state }, payload) {
+      commit('setLoading', true)
+      const update = {}
+      if (payload.title) {
+        update.title = payload.title
+      }
+      if (payload.desc) {
+        update.desc = payload.desc
+      }
+      if (payload.date) {
+        update.date = payload.date
+      }
+      firebase.database().ref('shares').child(payload.id).update(update)
+        .then(() => {
+          commit('setLoading', false)
+          commit('updateShare', payload)
+        })
+        .catch(err => {
+          console.log(err)          
+          commit('setLoading', false)
         })
     },
     // 用户注册

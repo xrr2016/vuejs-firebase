@@ -1,13 +1,18 @@
 <template>
   <v-container>
-    <v-layout row wrap>
+    <v-layout row wrap v-if="loading">
+      <v-flex xs12>
+        <v-progress-circular v-if="loading" indeterminate :size="70" :width="7" class="blue--text"></v-progress-circular>
+      </v-flex>
+    </v-layout>    
+    <v-layout row wrap v-else>
       <v-flex xs12>
         <v-card>
           <v-card-title>
             <h6 class="primary--text">{{ share.title }}</h6>
             <template v-if="userIsCreator">
               <v-spacer></v-spacer>
-              <app-dialog></app-dialog>
+              <app-dialog :share="share"></app-dialog>
             </template>
           </v-card-title>
           <v-card-media :src="share.imgUrl" height="320px">
@@ -50,6 +55,9 @@ export default {
         return false
       }
       return this.$store.getters.user.id === this.share.creatorId
+    },
+    loading () {
+      return this.$store.getters.loading
     }
   },
   methods: {

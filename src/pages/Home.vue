@@ -10,7 +10,7 @@
     </v-layout>
     <v-layout row >
       <v-flex xs2 offset-xs5 class="mt-5">
-        <v-progress-circular v-if="loading" indeterminate :size="70" :width="7" class="purple--text"></v-progress-circular>
+        <v-progress-circular v-if="loading" indeterminate :size="70" :width="7" class="blue--text"></v-progress-circular>
       </v-flex>
     </v-layout>
     <v-layout row wrap class="mt-2" v-if="!loading">
