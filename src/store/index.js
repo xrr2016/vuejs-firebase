@@ -74,7 +74,7 @@ export const store = new Vuex.Store({
       commit('setLoading', true)
       firebase.database().ref('shares').once('value')
         .then(data => {
-          const shares = []  
+          const shares = []
           const obj = data.val()
           for (let key in obj) {
             shares.push({
@@ -127,7 +127,7 @@ export const store = new Vuex.Store({
         .then(() => {
           commit('createShare', {
             ...share,
-            imgUrl: imgUrl, 
+            imgUrl: imgUrl,
             id: key
           })
         })
@@ -154,7 +154,7 @@ export const store = new Vuex.Store({
           commit('updateShare', payload)
         })
         .catch(err => {
-          console.log(err)          
+          console.log(err)
           commit('setLoading', false)
         })
     },
@@ -168,10 +168,10 @@ export const store = new Vuex.Store({
             const newUser = { id: user.uid, shares: [] }
             commit('setUser', newUser)
         })
-        .catch(err => { 
+        .catch(err => {
           commit('setLoading', false)
           commit('setError', err)
-          console.log(err) 
+          console.log(err)
         })
     },
     // 用户登录
@@ -184,7 +184,7 @@ export const store = new Vuex.Store({
             const newUser = { id: user.uid, shares: [] }
             commit('setUser', newUser)
         })
-        .catch(err => { 
+        .catch(err => {
           commit('setLoading', false)
           commit('setError', err)
           console.log(err)
@@ -192,7 +192,7 @@ export const store = new Vuex.Store({
     },
     // 用户自动登录
     autoLogin ({ commit }, payload) {
-      commit('setUser', { 
+      commit('setUser', {
         id: payload.uid,
         createdShares: []
        })

@@ -7,6 +7,7 @@ import { store } from './store'
 import dateFilter from './filters/date'
 import AlertComponent from './components/Alert'
 import DialogComponent from './components/EditDialog'
+import EditDateDialogComponent from './components/EditDateDialog'
 
 Vue.use(Vuetify)
 Vue.config.productionTip = false
@@ -14,6 +15,7 @@ Vue.config.productionTip = false
 Vue.filter('date', dateFilter)
 Vue.component('app-alert', AlertComponent)
 Vue.component('app-dialog', DialogComponent)
+Vue.component('app-edit-date-dialog', EditDateDialogComponent)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -31,8 +33,8 @@ new Vue({
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.$store.dispatch('autoLogin', user)
+        this.$store.dispatch('loadShares')
       }
     })
-    this.$store.dispatch('loadShares')
   }
 })

@@ -22,8 +22,8 @@
             <v-flex xs12 sm6 xl4 offset-sm3 offset-xl4>
               <!-- <v-text-field name="imgUrl" label="Image Url" id="img-url" v-model="imgUrl" required></v-text-field> -->
               <v-btn raised primary @click="handlePickFile">上传图片</v-btn>
-              <input type="file" ref="fileInput" style="display: none;" 
-                accept="image/*" @change="handleFileChange"> 
+              <input type="file" ref="fileInput" style="display: none;"
+                accept="image/*" @change="handleFileChange">
             </v-flex>
           </v-layout>
           <v-layout row>
@@ -33,8 +33,8 @@
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 xl4 offset-sm3 offset-xl4>
-              <v-btn 
-               class="primary" 
+              <v-btn
+               class="primary"
                :disabled="!formIsValid"
                type="submit"
                >Create Share</v-btn>
@@ -82,7 +82,7 @@ export default {
         desc: this.desc,
         // imgUrl: this.imgUrl,
         image: this.image,
-        date: new Date().toLocaleString()
+        date: Date.now()
       }
       this.$store.dispatch('createShare', share)
       this.$router.push('/shares')
